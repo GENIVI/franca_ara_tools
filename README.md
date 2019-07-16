@@ -10,6 +10,9 @@ Eclipse Oxygen.3a Release (4.7.3a). Flavor: Eclipse Modeling Tools.
 
 We recommend to use the [Eclipse installer](https://www.eclipse.org/downloads/packages/installer).
 
+### Xtend
+Go to Eclipse Marketplace and install "Xtend".
+
 ### AUTOSAR
 
 Artop Release 4.12 (2019-04-26).
