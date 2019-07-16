@@ -12,12 +12,12 @@ We recommend to use the [Eclipse installer](https://www.eclipse.org/downloads/pa
 
 ### AUTOSAR
 
-Artop Release 4.10 (2018-04-27).
+Artop Release 4.12 (2019-04-26).
 
-This supports AUTOSAR Adaptive Platform R18-03.
+This supports AUTOSAR Adaptive Platform R19-03.
 You need to be registered on [artop.org](https://www.artop.org) to get access to downloads and update sites.
 
-We plan to upgrade to the latest [Adaptive Platform 18.10](https://www.autosar.org/standards/adaptive-platform/adaptive-platform-1810/) as soon as a corresponding Artop implementation is available.
+We plan to upgrade to the latest [Adaptive Platform 19.03](https://www.autosar.org/standards/adaptive-platform/adaptive-platform-1903/) as soon as a corresponding Artop implementation is available.
 
 ### Franca
 
