@@ -2,6 +2,9 @@
 
 Translation between Franca Interface Description Language (IDL) and AUTOSAR Adaptive models.
 
+## User & Developer Documentation
+More documentation is provided in the [project Wiki](https://github.com/genivi/franca_ara_tools/wiki) in GitHub.
+
 ## Development setup
 
 ### Eclipse
