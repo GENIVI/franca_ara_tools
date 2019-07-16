@@ -17,8 +17,6 @@ Artop Release 4.12 (2019-04-26).
 This supports AUTOSAR Adaptive Platform R19-03.
 You need to be registered on [artop.org](https://www.artop.org) to get access to downloads and update sites.
 
-We plan to upgrade to the latest [Adaptive Platform 19.03](https://www.autosar.org/standards/adaptive-platform/adaptive-platform-1903/) as soon as a corresponding Artop implementation is available.
-
 ### Franca
 
 Franca Release 0.13.1.
