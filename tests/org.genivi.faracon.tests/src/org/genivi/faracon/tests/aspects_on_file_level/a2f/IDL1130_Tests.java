@@ -13,6 +13,7 @@ public class IDL1130_Tests extends ARA2FrancaTestBase {
 
 	@Test
 	public void test1() {
+		
 	}
 
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 http://autosar.org/schema/r4.0/autosar40/gs/gtc/i">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="6e3956d2-80d0-4161-a324-566b310a5e41">
+      <SHORT-NAME>a</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="49a35f2e-d8f9-43c2-9015-086e45caff33">
+          <SHORT-NAME>b</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="fce46251-1c2b-4aa1-a448-dc2ca686f59d">
+              <SHORT-NAME>c</SHORT-NAME>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
