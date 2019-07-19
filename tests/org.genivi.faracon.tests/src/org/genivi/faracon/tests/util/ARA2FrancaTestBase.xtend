@@ -69,7 +69,6 @@ class ARA2FrancaTestBase {
 	 * @param fileName the file name of the autosar output file
 	 */
 	def protected saveAraFile(AUTOSAR arModel, String fileName) {
-		val araConnector = new ARAConnector
 		araConnector.saveARXML(new ARAResourceSet, arModel, fileName)
 	}
 
