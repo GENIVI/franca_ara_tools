@@ -59,6 +59,10 @@ class ARA2FrancaTransformation extends ARA2FrancaBase {
 	}
 
 	def create fac.createFInterface transform(ServiceInterface src) {
+		if(!src.namespaces.isNullOrEmpty){
+			logger.logError('''Namespaces are not supported by Franca. Franca only uses the package hierarchy to identify namespaces. «
+			»The following Autosar namespaces defined for the interface "«src.shortName»" can not be transformed: "«src.namespaces.map[shortName].join(", ")»"''')
+		}
 		name = src.shortName
 		broadcasts.addAll(src.events.map[transform])
 		attributes.addAll(src.fields.map[transform])
