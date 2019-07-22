@@ -10,9 +10,15 @@ import org.junit.runner.RunWith
 @RunWith(XtextRunner2_Franca) 
 @InjectWith(FaraconTestsInjectorProvider) 
 class IDL1130_Tests extends ARA2FrancaTestBase {
+
+	@Test  
+	def void testOneInterface() {
+		transformAndCheck(testPath + "oneInterfaceInPackage.arxml", "src/org/genivi/faracon/tests/aspects_on_file_level/f2a/oneInterfaceDefinition.fidl")
+	}
 	
 	@Test  
 	def void testMultipleInterfacesInOnePackage() {
 		transformAndCheck(testPath + "multiInterfacesInOnePackage.arxml", "src/org/genivi/faracon/tests/aspects_on_file_level/f2a/multipleInterfaceDefinitions.fidl")
 	}
+	
 }
