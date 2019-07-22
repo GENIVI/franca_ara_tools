@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 http://autosar.org/schema/r4.0/autosar40/atls">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="fb377d81-370a-4773-b6af-a8f59105daac">
+      <SHORT-NAME>a1</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="9cfe54b3-8ce1-4833-876d-5d2d52b6f8dc">
+          <SHORT-NAME>b2</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="ac2a463f-acd6-4d41-b2e1-34281c08fdc7">
+              <SHORT-NAME>c3</SHORT-NAME>
+              <ELEMENTS>
+                <SERVICE-INTERFACE UUID="697f35db-dbd3-4b1c-931e-a866b3c89538">
+                  <SHORT-NAME>A</SHORT-NAME>
+                </SERVICE-INTERFACE>
+                <SERVICE-INTERFACE UUID="bc7799d1-b8b7-4288-b83f-f1e8878b5921">
+                  <SHORT-NAME>B</SHORT-NAME>
+                </SERVICE-INTERFACE>
+                <SERVICE-INTERFACE UUID="3a0d479f-def6-440c-bda7-096d998f5800">
+                  <SHORT-NAME>C</SHORT-NAME>
+                </SERVICE-INTERFACE>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
