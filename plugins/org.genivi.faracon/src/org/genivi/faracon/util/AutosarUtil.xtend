@@ -15,17 +15,24 @@ class AutosarUtil {
 		return namespace
 	}
 
-	static def void collectPackagesWithElements(Collection<ARPackage> packages,
+	/**
+	 * Collects packages need to be transformed from Autosar to franca.
+	 * Collects the packages that contain elements from type relevantElementsInstances or which are leaf packages.
+	 * 
+	 */
+	static def void collectPackagesWithElementsOrLeafPackages(Collection<ARPackage> packages,
 		Collection<ARPackage> packagesWithElements, Collection<Class<?>> relevantElementsInstances) {
 		packages.forEach [ currentPackage |
 			val hasRelevantElement = currentPackage.elements.findFirst [ packageElement |
 				!relevantElementsInstances.filter[it.isInstance(packageElement)].isNullOrEmpty
 			]
-			if (hasRelevantElement !== null) {
+			val isLeafPackage = currentPackage.arPackages.isNullOrEmpty
+			if (hasRelevantElement !== null || isLeafPackage) {
 				// the current package has at least one interface or one ImplementationDataType --> needs to be transformed 
 				packagesWithElements.add(currentPackage)
 			}
-			collectPackagesWithElements(currentPackage.arPackages, packagesWithElements, relevantElementsInstances)
+			collectPackagesWithElementsOrLeafPackages(currentPackage.arPackages, packagesWithElements,
+				relevantElementsInstances)
 		]
 	}
 }

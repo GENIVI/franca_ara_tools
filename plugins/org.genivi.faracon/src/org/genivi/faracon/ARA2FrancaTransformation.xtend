@@ -44,7 +44,7 @@ class ARA2FrancaTransformation extends ARA2FrancaBase {
 
 	def Collection<FModel> transform(AUTOSAR src) {
 		val Collection<ARPackage> relevantPackages = newArrayList
-		collectPackagesWithElements(src.arPackages, relevantPackages,
+		collectPackagesWithElementsOrLeafPackages(src.arPackages, relevantPackages,
 			newArrayList(ServiceInterface, ImplementationDataType))
 		val fModels = relevantPackages.map[it.transform()].toList
 		return fModels

@@ -25,6 +25,10 @@ class IDL1100_Tests extends ARA2FrancaTestBase {
 		//then
 		val francaModel = francaModels.assertOneElement
 		assertEquals("Wrong franca namespace created", "empty_namespace", francaModel.name)
-		
+	}
+	
+	@Test
+	def void testLeafPackageCreation(){
+		transformAndCheck(testPath + "singlePackageWithoutContent.arxml", "src/org/genivi/faracon/tests/aspects_on_file_level/f2a/emptyFile.fidl" )
 	}
 }

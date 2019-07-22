@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 http://autosar.org/schema/r4.0/autosar40/atls">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="fa1e0511-add9-4ef9-8123-dd3ff03129fe">
+      <SHORT-NAME>empty_namespace</SHORT-NAME>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
