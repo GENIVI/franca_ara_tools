@@ -9,6 +9,7 @@ package org.genivi.faracon;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -81,12 +82,12 @@ public class ARAConnector extends BaseWithLogger implements IFrancaConnector {
 		}
 
 		ARAModelContainer amodel = (ARAModelContainer)model;
-		FModel fmodel = ara2FrancaTransformation.transform(amodel.model());
+		Collection<FModel> francaModels = ara2FrancaTransformation.transform(amodel.model());
 
 //		lastTransformationIssues = ara2FrancaTransformation.getTransformationIssues();
 //		out.println(IssueReporter.getReportString(lastTransformationIssues));
 
-		return new FrancaModelContainer(fmodel);
+		return new FrancaMultiModelContainer(francaModels);
 	}
 
 	@Override

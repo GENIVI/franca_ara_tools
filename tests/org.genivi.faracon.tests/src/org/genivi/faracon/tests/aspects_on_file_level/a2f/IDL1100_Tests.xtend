@@ -6,6 +6,9 @@ import org.genivi.faracon.tests.util.ARA2FrancaTestBase
 import org.genivi.faracon.tests.util.FaraconTestsInjectorProvider
 import org.junit.Test
 import org.junit.runner.RunWith
+import static org.junit.Assert.fail
+import static extension org.genivi.faracon.tests.util.AssertHelper.*
+import static org.junit.Assert.assertEquals
 
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)
@@ -13,7 +16,15 @@ class IDL1100_Tests extends ARA2FrancaTestBase {
 	
 	@Test
 	def void testSingleArPackage() {
-		transformAndCheck("src/org/genivi/faracon/tests/aspects_on_file_level/a2f/emptyFile.arxml",
-			"src/org/genivi/faracon/tests/aspects_on_file_level/f2a/emptyFile.fidl")
+		// given
+		val inputFilePath = testPath + "singlePackage.arxml"
+		
+		// when
+		val francaModels = inputFilePath.transformToFranca()
+		
+		//then
+		val francaModel = francaModels.assertOneElement
+		assertEquals("Wrong franca namespace created", "empty_namespace", francaModel.name)
+		
 	}
 }

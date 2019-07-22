@@ -9,6 +9,11 @@
           <AR-PACKAGES>
             <AR-PACKAGE UUID="1c57496d-67e2-49ab-a8b3-c63d7780dcbe">
               <SHORT-NAME>c3</SHORT-NAME>
+              <ELEMENTS>
+			    <SERVICE-INTERFACE UUID="d048e623-100b-4acc-abb8-27e3381392c5">
+			      <SHORT-NAME>InterfaceWithNamespace</SHORT-NAME>
+			    </SERVICE-INTERFACE>
+			  </ELEMENTS>
             </AR-PACKAGE>
           </AR-PACKAGES>
         </AR-PACKAGE>

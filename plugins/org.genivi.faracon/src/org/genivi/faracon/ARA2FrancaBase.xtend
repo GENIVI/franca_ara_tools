@@ -5,8 +5,6 @@ import org.genivi.faracon.logging.BaseWithLogger
 
 class ARA2FrancaBase extends BaseWithLogger {
 
-	def protected fac() {
-		FrancaFactory.eINSTANCE
-	}
+	protected extension val FrancaFactory fac = FrancaFactory.eINSTANCE 
 
 }

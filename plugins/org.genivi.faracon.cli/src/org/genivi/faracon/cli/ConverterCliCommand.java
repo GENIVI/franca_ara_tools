@@ -15,6 +15,7 @@ import org.franca.core.framework.FrancaModelContainer;
 import org.franca.core.franca.FModel;
 import org.genivi.faracon.ARAConnector;
 import org.genivi.faracon.ARAModelContainer;
+import org.genivi.faracon.FrancaMultiModelContainer;
 import org.genivi.faracon.console.CommandlineTool;
 //import org.genivi.faracon.generator.GeneratorFileSystemAccess;
 //import org.genivi.faracon.verification.CommandlineValidator;
@@ -47,22 +48,19 @@ public class ConverterCliCommand extends CommandlineTool {
 	private ValidationMessageAcceptor cliMessageAcceptor = new AbstractValidationMessageAcceptor() {
 
 		@Override
-		public void acceptInfo(String message, EObject object,
-				EStructuralFeature feature, int index, String code,
+		public void acceptInfo(String message, EObject object, EStructuralFeature feature, int index, String code,
 				String... issueData) {
 			getLogger().logInfo(SCOPE + message);
 		}
 
 		@Override
-		public void acceptWarning(String message, EObject object,
-				EStructuralFeature feature, int index, String code,
+		public void acceptWarning(String message, EObject object, EStructuralFeature feature, int index, String code,
 				String... issueData) {
 			getLogger().logWarning(SCOPE + message);
 		}
 
 		@Override
-		public void acceptError(String message, EObject object,
-				EStructuralFeature feature, int index, String code,
+		public void acceptError(String message, EObject object, EStructuralFeature feature, int index, String code,
 				String... issueData) {
 			hasValidationError = true;
 			getLogger().logError(SCOPE + message);
@@ -92,7 +90,7 @@ public class ConverterCliCommand extends CommandlineTool {
 
 		getLogger().logInfo("Command: Franca ARA Converter");
 		getLogger().increaseIndentationLevel();
-    	
+
 		// -e --warnings-as-errors Treat warnings as errors.
 		if (parsedArguments.hasOption("e")) {
 			setWarningsAsErrors(true);
@@ -105,7 +103,7 @@ public class ConverterCliCommand extends CommandlineTool {
 
 		List<String> commandLineArguments = parsedArguments.getArgList();
 		for (String commandLineArgument : commandLineArguments) {
-			getLogger().logWarning("Unexpected command line argument \"" + commandLineArgument + "\"");			
+			getLogger().logWarning("Unexpected command line argument \"" + commandLineArgument + "\"");
 		}
 
 		String[] francaFilePaths = parsedArguments.getOptionValues('f');
@@ -115,11 +113,11 @@ public class ConverterCliCommand extends CommandlineTool {
 		boolean haveFrancaInput = francaFilePaths != null && francaFilePaths.length > 0;
 		boolean haveARAInput = araFilePaths != null && araFilePaths.length > 0;
 		if (!haveFrancaInput && !haveARAInput) {
-			getLogger().logError("At least one input model file has to be given!");			
-		}		
+			getLogger().logError("At least one input model file has to be given!");
+		}
 		if (haveFrancaInput && haveARAInput) {
-			getLogger().logWarning("A mix of FrancaIDL and Adaptive AUTOSAR input model files is given.");			
-		}		
+			getLogger().logWarning("A mix of FrancaIDL and Adaptive AUTOSAR input model files is given.");
+		}
 //		// a search path may be specified, collect all fidl/fdepl files
 //		if (parsedArguments.hasOption("sp")) {
 //			files.addAll(cliTool.searchFidlandFdeplFiles(parsedArguments
@@ -147,7 +145,7 @@ public class ConverterCliCommand extends CommandlineTool {
 		// Invoke the converters.
 		convertFrancaFiles(francaFilePaths);
 		convertARAFiles(araFilePaths);
-		
+
 		return 0;
 	}
 
@@ -167,7 +165,7 @@ public class ConverterCliCommand extends CommandlineTool {
 			FModel francaModel;
 			try {
 				francaModel = francaLoader.loadModel(normalizedFrancaFilePath);
-			} catch(Exception e) {
+			} catch (Exception e) {
 				getLogger().logError("File " + normalizedFrancaFilePath + " could not be loaded!");
 				getLogger().decreaseIndentationLevel();
 				continue;
@@ -179,20 +177,21 @@ public class ConverterCliCommand extends CommandlineTool {
 			}
 			URI francaModelUri = francaModel.eResource().getURI();
 			if (!francaModelUri.fileExtension().toLowerCase().equals("fidl")) {
-				getLogger().logWarning("The FrancaIDL file " + normalizedFrancaFilePath + " does not have the file extension \"fidl\".");
+				getLogger().logWarning("The FrancaIDL file " + normalizedFrancaFilePath
+						+ " does not have the file extension \"fidl\".");
 			}
 			getLogger().decreaseIndentationLevel();
-			
+
 			// Transform the FrancaIDL model to an arxml model.
 			getLogger().logInfo("Converting FrancaIDL file " + normalizedFrancaFilePath);
-			ARAModelContainer araModelContainer = (ARAModelContainer)araConnector.fromFranca(francaModel);
+			ARAModelContainer araModelContainer = (ARAModelContainer) araConnector.fromFranca(francaModel);
 
 			// Store the output arxml model.
 			URI transformedModelUri = francaModelUri.trimFileExtension().appendFileExtension("arxml");
 			String outputDirectoryPath = null;
 			try {
 				outputDirectoryPath = preferences.getPreference(PreferencesConstants.P_OUTPUT_DIRECTORY_PATH, "");
-			} catch(Preferences.UnknownPreferenceException e) {
+			} catch (Preferences.UnknownPreferenceException e) {
 				getLogger().logError(e.getMessage());
 			}
 			if (!outputDirectoryPath.isEmpty()) {
@@ -221,36 +220,48 @@ public class ConverterCliCommand extends CommandlineTool {
 			getLogger().increaseIndentationLevel();
 			ARAModelContainer araModelContainer;
 			try {
-				araModelContainer = (ARAModelContainer)araConnector.loadModel(normalizedARAFilePath);
-			} catch(Exception e) {
+				araModelContainer = (ARAModelContainer) araConnector.loadModel(normalizedARAFilePath);
+			} catch (Exception e) {
 				getLogger().logError("File " + normalizedARAFilePath + " could not be loaded!");
 				getLogger().decreaseIndentationLevel();
 				continue;
 			}
 			URI araModelUri = araModelContainer.model().eResource().getURI();
 			if (!araModelUri.fileExtension().toLowerCase().equals("arxml")) {
-				getLogger().logWarning("The Adaptive AUTOSAR file " + normalizedARAFilePath + " does not have the file extension \"arxml\".");
+				getLogger().logWarning("The Adaptive AUTOSAR file " + normalizedARAFilePath
+						+ " does not have the file extension \"arxml\".");
 			}
 			getLogger().decreaseIndentationLevel();
 
 			// Transform the arxml model to a FrancaIDL model.
 			getLogger().logInfo("Converting arxml file " + normalizedARAFilePath);
-			FrancaModelContainer fmodel = (FrancaModelContainer)araConnector.toFranca(araModelContainer);
+			FrancaMultiModelContainer fmodel = (FrancaMultiModelContainer) araConnector.toFranca(araModelContainer);
 
-			// Store the output FrancaIDL model.
-			URI transformedModelUri = araModelUri.trimFileExtension().appendFileExtension("fidl");
-			String outputDirectoryPath = null;
-			try {
-				outputDirectoryPath = preferences.getPreference(PreferencesConstants.P_OUTPUT_DIRECTORY_PATH, "");
-			} catch(Preferences.UnknownPreferenceException e) {
-				getLogger().logError(e.getMessage());
+			for (FrancaModelContainer francaModelContainer : fmodel.getFrancaModelContainers()) {
+				// Store the output FrancaIDL model.
+				URI transformedModelUri = araModelUri.trimFileExtension();
+				if (fmodel.getFrancaModelContainers().size() > 1) {
+					// if we created more than one Franca file, we use the Franca model name as file
+					// name as we need to create multiple files and cannot use the input file with
+					// ".fidl" as extension
+					String modelName = francaModelContainer.model().getName();
+					transformedModelUri = araModelUri.trimFileExtension().trimSegments(1).appendFragment(modelName);
+				}
+				transformedModelUri.appendFileExtension("fidl");
+
+				String outputDirectoryPath = null;
+				try {
+					outputDirectoryPath = preferences.getPreference(PreferencesConstants.P_OUTPUT_DIRECTORY_PATH, "");
+				} catch (Preferences.UnknownPreferenceException e) {
+					getLogger().logError(e.getMessage());
+				}
+				if (!outputDirectoryPath.isEmpty()) {
+					outputDirectoryPath += "/";
+				}
+				String francaFilePath = normalize(outputDirectoryPath + transformedModelUri.lastSegment());
+				getLogger().logInfo("Storing FrancaIDL file " + francaFilePath);
+				francaLoader.saveModel(fmodel.model(), francaFilePath);
 			}
-			if (!outputDirectoryPath.isEmpty()) {
-				outputDirectoryPath += "/";
-			}
-			String francaFilePath = normalize(outputDirectoryPath + transformedModelUri.lastSegment());
-			getLogger().logInfo("Storing FrancaIDL file " + francaFilePath);
-			francaLoader.saveModel(fmodel.model(), francaFilePath);
 		}
 
 		getLogger().decreaseIndentationLevel();
@@ -434,7 +445,7 @@ public class ConverterCliCommand extends CommandlineTool {
 	}
 
 	@Override
-    public String getFrancaVersion() {
+	public String getFrancaVersion() {
 		return Platform.getBundle("org.franca.core").getVersion().toString();
 	}
 

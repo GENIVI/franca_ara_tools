@@ -4,62 +4,54 @@ import autosar40.adaptiveplatform.applicationdesign.portinterface.Field
 import autosar40.adaptiveplatform.applicationdesign.portinterface.ServiceInterface
 import autosar40.autosartoplevelstructure.AUTOSAR
 import autosar40.commonstructure.implementationdatatypes.ImplementationDataType
+import autosar40.genericstructure.generaltemplateclasses.arpackage.ARPackage
 import autosar40.genericstructure.generaltemplateclasses.primitivetypes.ArgumentDirectionEnum
 import autosar40.swcomponent.datatype.dataprototypes.VariableDataPrototype
 import autosar40.swcomponent.portinterface.ArgumentDataPrototype
 import autosar40.swcomponent.portinterface.ClientServerOperation
 import com.google.inject.Inject
-import org.apache.log4j.Logger
+import java.util.Collection
+import org.franca.core.franca.FModel
 import org.genivi.faracon.ara2franca.FrancaTypeCreator
 
+import static org.genivi.faracon.util.AutosarUtil.*
+
 class ARA2FrancaTransformation extends ARA2FrancaBase {
-	
-	@Inject 
+
+	@Inject
 	var extension FrancaTypeCreator araTypeCreator
 
-	def create fac.createFModel transform(AUTOSAR src) {		
-		// TODO: this just takes the first package in the arxml
-		if (!src.arPackages.empty) {
-			var pkg = src.arPackages.get(0)
-			var namespace = pkg.shortName
-			while (!pkg.arPackages.empty) {
-				pkg = pkg.arPackages.get(0)
-				namespace += '.' + pkg.shortName		
-			}
-			name = namespace
-			
-			for (element : pkg.elements) {
-				if (element instanceof ServiceInterface) {
-					interfaces.add(transform(element))
-				}
-			}
-			
-			if (!interfaces.empty) {
-				// TODO: eliminate simplification for the prototype (just puts all type definitions into the first interface definition).
-				val typeCollection = interfaces.get(0)
-				pkg = src.arPackages.get(0)
-				while (pkg !== null) {
-					for (element : pkg.elements) {
-						if (element instanceof ImplementationDataType) {
-							typeCollection.types.add(transform(element))
-						}
-					}
+	/**
+	 * Transforms the relevant elements of an ArPackage to a FrancaModel.
+	 * Only considers the actual elements within the package.
+	 */
+	def create createFModel transform(ARPackage arPackage) {
+		it.name = getPackageNamespace(arPackage)
 
-					if (!pkg.arPackages.empty) {
-						pkg = pkg.arPackages.get(0)
-					} else {
-						pkg = null
-					}
-				}
-				
-			}
-		} else {
-			name = "NOT_AVAILABLE"
+		val serviceInterfaces = arPackage.elements.filter(ServiceInterface)
+		val francaInterfaces = serviceInterfaces.map[transform]
+		it.interfaces.addAll(francaInterfaces)
+
+		val implementationDataTypes = arPackage.elements.filter(ImplementationDataType)
+		val types = implementationDataTypes.map[transform]
+
+		if (!francaInterfaces.isNullOrEmpty) {
+			// TODO: eliminate simplification for the prototype (just puts all type definitions into the first interface definition).
+			val typeInterface = francaInterfaces.get(0)
+			typeInterface.types.addAll(types)
 		}
 	}
 
+	def Collection<FModel> transform(AUTOSAR src) {
+		val Collection<ARPackage> relevantPackages = newArrayList
+		collectPackagesWithElements(src.arPackages, relevantPackages,
+			newArrayList(ServiceInterface, ImplementationDataType))
+		val fModels = relevantPackages.map[it.transform()].toList
+		return fModels
+	}
+
 	def create fac.createFInterface transform(ServiceInterface src) {
-		if(!src.namespaces.isNullOrEmpty){
+		if (!src.namespaces.isNullOrEmpty) {
 			logger.logError('''Namespaces are not supported by Franca. Franca only uses the package hierarchy to identify namespaces. «
 			»The following Autosar namespaces defined for the interface "«src.shortName»" can not be transformed: "«src.namespaces.map[shortName].join(", ")»"''')
 		}
@@ -68,7 +60,7 @@ class ARA2FrancaTransformation extends ARA2FrancaBase {
 		attributes.addAll(src.fields.map[transform])
 		methods.addAll(src.methods.map[transform])
 	}
-	
+
 	def create fac.createFBroadcast transform(VariableDataPrototype src) {
 		name = src.shortName
 		val outArg = fac.createFArgument => [
@@ -78,7 +70,7 @@ class ARA2FrancaTransformation extends ARA2FrancaBase {
 		]
 		outArgs.add(outArg)
 	}
-	
+
 	def create fac.createFAttribute transform(Field src) {
 		name = src.shortName
 		type = createFTypeRef(src.type as ImplementationDataType)
@@ -86,16 +78,16 @@ class ARA2FrancaTransformation extends ARA2FrancaBase {
 		noSubscriptions = !src.hasNotifier
 		readonly = !src.hasSetter
 	}
-	
+
 	def create fac.createFMethod transform(ClientServerOperation src) {
 		name = src.shortName
 		inArgs.addAll(src.arguments.filter[direction == ArgumentDirectionEnum.IN].map[transform])
 		outArgs.addAll(src.arguments.filter[direction == ArgumentDirectionEnum.OUT].map[transform])
 	}
-	
+
 	def create fac.createFArgument transform(ArgumentDataPrototype src) {
 		name = src.shortName
 		type = createFTypeRef(src.type as ImplementationDataType)
 	}
-	
+
 }
