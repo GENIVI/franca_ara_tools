@@ -84,7 +84,7 @@ class ARA2FrancaTestBase {
 	 * class itself. 
 	 */
 	def protected getTestPath() {
-		return "src/" + (this.class.package.name + ".").replace(".", "/") + "/"
+		return "src/" + (this.class.package.name + ".").replace(".", "/")
 	}
 
 	def private void doTransformTest(IModelContainer arModel, Collection<FModel> expectedModels) {

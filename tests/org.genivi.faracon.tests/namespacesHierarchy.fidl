@@ -1,0 +1,4 @@
+package a1.b2.c3
+
+interface InterfaceWithNamespace {
+}

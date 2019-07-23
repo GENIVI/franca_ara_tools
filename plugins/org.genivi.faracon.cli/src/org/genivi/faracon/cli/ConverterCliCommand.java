@@ -239,18 +239,7 @@ public class ConverterCliCommand extends CommandlineTool {
 
 			for (FrancaModelContainer francaModelContainer : fmodel.getFrancaModelContainers()) {
 				// Store the output FrancaIDL model.
-				URI transformedModelUri = araModelUri.trimFileExtension();
-				if (fmodel.getFrancaModelContainers().size() > 1) {
-					// if we created more than one Franca file, we use the origin file name and the
-					// franca model name as file name as we need to create multiple files and cannot
-					// use the input file with ".fidl" as extension
-					String modelName = francaModelContainer.model().getName();
-					String araFileName = araModelUri.lastSegment();
-					String francaFileName = araFileName + "_" + modelName;
-					transformedModelUri = araModelUri.trimFileExtension().trimSegments(1)
-							.appendFragment(francaFileName);
-				}
-				transformedModelUri.appendFileExtension("fidl");
+				URI transformedModelUri = OutputFileHelper.calculateFrancaOutputUri(araModelUri, fmodel, francaModelContainer);
 
 				String outputDirectoryPath = null;
 				try {
