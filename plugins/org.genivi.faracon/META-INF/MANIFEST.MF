@@ -20,8 +20,11 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.genivi.faracon,
+ org.genivi.faracon.ara2franca,
+ org.genivi.faracon.franca2ara,
  org.genivi.faracon.logging,
  org.genivi.faracon.preferences,
- org.genivi.faracon.validator,
- org.genivi.faracon.franca2ara
+ org.genivi.faracon.util,
+ org.genivi.faracon.validator
 Import-Package: org.apache.log4j
+Automatic-Module-Name: org.genivi.faracon
