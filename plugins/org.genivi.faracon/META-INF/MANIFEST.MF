@@ -6,7 +6,7 @@ Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.genivi.faracon.Activator
 Bundle-Vendor: GENIVI
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.xtend.lib;bundle-version="2.11.0",
+ org.eclipse.xtend.lib,
  com.google.guava,
  com.google.inject;bundle-version="3.0.0",
  org.eclipse.xtext,

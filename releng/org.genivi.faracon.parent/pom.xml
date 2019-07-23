@@ -28,12 +28,12 @@
 
 		<!-- Pinned versions needed for Xtext/Xtend Maven plug-in -->
 		<!-- Pinned to OXYGEN versions!!! -->
-		<xtextVersion>2.14.0</xtextVersion>
+		<xtextVersion>2.18.0</xtextVersion>
 		<jdt-core-version>3.13.100</jdt-core-version>
 		<jdt-compiler-apt-version>1.3.60</jdt-compiler-apt-version>
 		<jdt-compiler-tool-version>1.2.51</jdt-compiler-tool-version>
 		<emf-codegen-version>2.11.0</emf-codegen-version>
-		<xtend-version>2.14.0</xtend-version>
+		<xtend-version>2.18.0</xtend-version>
 		<guava.version>15.0</guava.version>
 
 		<skip.deployment>true</skip.deployment>

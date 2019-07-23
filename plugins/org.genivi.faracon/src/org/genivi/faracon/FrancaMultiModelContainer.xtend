@@ -14,9 +14,9 @@ class FrancaMultiModelContainer extends FrancaModelContainer {
 
 	@Accessors
 	val Collection<FrancaModelContainer> francaModelContainers
-	
+
 	new(Collection<FModel> francaModels) {
-		super(francaModels.isNullOrEmpty ? null : francaModels.get(0))
+		super(if(francaModels.isNullOrEmpty) null else francaModels.get(0))
 		francaModelContainers = francaModels.map[new FrancaModelContainer(it)].toList
 	}
 
