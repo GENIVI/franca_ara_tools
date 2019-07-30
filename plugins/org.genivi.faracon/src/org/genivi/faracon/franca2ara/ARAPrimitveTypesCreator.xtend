@@ -5,7 +5,6 @@ import autosar40.commonstructure.implementationdatatypes.ImplementationDataType
 import autosar40.genericstructure.generaltemplateclasses.arpackage.ARPackage
 import java.util.HashMap
 import javax.inject.Singleton
-import org.apache.log4j.Logger
 import org.franca.core.franca.FBasicTypeId
 import org.genivi.faracon.ARAResourceSet
 import org.genivi.faracon.Franca2ARABase

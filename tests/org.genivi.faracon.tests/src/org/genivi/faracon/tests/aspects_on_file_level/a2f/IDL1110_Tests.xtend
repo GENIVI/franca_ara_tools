@@ -17,9 +17,12 @@ import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertNotNull
 import static org.junit.Assert.assertNull
 
-import static extension org.genivi.faracon.tests.util.AssertHelper.*
+import static extension org.genivi.faracon.tests.util.FaraconAssertHelper.*
 import static extension org.genivi.faracon.tests.util.FrancaAssertHelper.*
 
+/**
+ * Tests for the creation of multiple franca output files
+ */
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)
 class IDL1110_Tests extends ARA2FrancaTestBase {

@@ -1,7 +1,11 @@
 package org.genivi.faracon.util
 
+import autosar40.adaptiveplatform.applicationdesign.portinterface.ServiceInterface
 import autosar40.genericstructure.generaltemplateclasses.arpackage.ARPackage
 import java.util.Collection
+import autosar40.genericstructure.generaltemplateclasses.arpackage.PackageableElement
+import java.util.concurrent.AbstractExecutorService
+import java.util.Objects
 
 class AutosarUtil {
 	private new() {
@@ -35,4 +39,20 @@ class AutosarUtil {
 				relevantElementsInstances)
 		]
 	}
+	
+	/**
+	 * Checks whether the namespace of the provided service interface matches 
+	 * the namespace according to the package hierarchy.
+	 */
+	def static namespaceMathchesHierarchy(ServiceInterface serviceInterface) {
+		val containingPackage = serviceInterface.ARPackage
+		val hierarchyNamespace = containingPackage.packageNamespace
+		return Objects.equals(hierarchyNamespace, serviceInterface.namespaceHierarchy)
+	}
+	
+	
+	def private static getNamespaceHierarchy(ServiceInterface serviceInterface){
+		val hierarchy = serviceInterface.namespaces.map[it.shortName]
+		return hierarchy.join(".")	
+	} 
 }

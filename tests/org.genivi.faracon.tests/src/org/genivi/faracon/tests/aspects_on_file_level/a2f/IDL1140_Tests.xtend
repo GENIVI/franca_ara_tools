@@ -6,9 +6,13 @@ import org.genivi.faracon.tests.util.ARA2FrancaTestBase
 import org.genivi.faracon.tests.util.FaraconTestsInjectorProvider
 import org.junit.Test
 import org.junit.runner.RunWith
-import static extension org.genivi.faracon.tests.util.AssertHelper.*
+
+import static extension org.genivi.faracon.tests.util.FaraconAssertHelper.*
 import static extension org.genivi.faracon.tests.util.FrancaAssertHelper.*
 
+/**
+ * ImplementationDataTypes to franca transformation tests
+ */
 @RunWith(XtextRunner2_Franca) 
 @InjectWith(FaraconTestsInjectorProvider) 
 class IDL1140_Tests extends ARA2FrancaTestBase {

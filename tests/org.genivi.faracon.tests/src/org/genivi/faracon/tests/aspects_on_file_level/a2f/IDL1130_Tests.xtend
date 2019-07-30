@@ -7,6 +7,9 @@ import org.genivi.faracon.tests.util.FaraconTestsInjectorProvider
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Autosar to franca interface tests
+ */
 @RunWith(XtextRunner2_Franca) 
 @InjectWith(FaraconTestsInjectorProvider) 
 class IDL1130_Tests extends ARA2FrancaTestBase {

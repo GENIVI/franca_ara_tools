@@ -236,20 +236,21 @@ public class ConverterCliCommand extends CommandlineTool {
 			// Transform the arxml model to a FrancaIDL model.
 			getLogger().logInfo("Converting arxml file " + normalizedARAFilePath);
 			FrancaMultiModelContainer fmodel = (FrancaMultiModelContainer) araConnector.toFranca(araModelContainer);
-
+			
+			String outputDirectoryPath = null;
+			try {
+				outputDirectoryPath = preferences.getPreference(PreferencesConstants.P_OUTPUT_DIRECTORY_PATH, "");
+			} catch (Preferences.UnknownPreferenceException e) {
+				getLogger().logError(e.getMessage());
+			}
+			if (!outputDirectoryPath.isEmpty()) {
+				outputDirectoryPath += "/";
+			}
+			
 			for (FrancaModelContainer francaModelContainer : fmodel.getFrancaModelContainers()) {
 				// Store the output FrancaIDL model.
 				URI transformedModelUri = OutputFileHelper.calculateFrancaOutputUri(araModelUri, fmodel, francaModelContainer);
 
-				String outputDirectoryPath = null;
-				try {
-					outputDirectoryPath = preferences.getPreference(PreferencesConstants.P_OUTPUT_DIRECTORY_PATH, "");
-				} catch (Preferences.UnknownPreferenceException e) {
-					getLogger().logError(e.getMessage());
-				}
-				if (!outputDirectoryPath.isEmpty()) {
-					outputDirectoryPath += "/";
-				}
 				String francaFilePath = normalize(outputDirectoryPath + transformedModelUri.lastSegment());
 				getLogger().logInfo("Storing FrancaIDL file " + francaFilePath);
 				francaLoader.saveModel(fmodel.model(), francaFilePath);

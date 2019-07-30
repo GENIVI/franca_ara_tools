@@ -1,4 +1,0 @@
-package parentPackage.firstPackageWithContent
-
-interface FirstServiceInterface {
-}

@@ -8,7 +8,11 @@ import org.franca.core.franca.FModel
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.fail
 
-class FrancaAraAssertHelper {
+/**
+ * Assertion helper for the faracon test, which contains all general 
+ * assertions that can be used for both directions: ara 2 franca and franca to ara.
+ */
+class FaraconAssertHelper {
 
 	private new() {
 	}
@@ -30,4 +34,13 @@ class FrancaAraAssertHelper {
 			fail("The expected model does not equal the actual model")
 		}
 	}
+	
+	def static <T> T assertOneElement(Collection<T> elements){
+		return elements.assertElements(1).get(0)
+	}
+	
+	def static <T> Collection<T> assertElements(Collection<T> elements, int expectedElements){
+		assertEquals("Wrong number of expected elements in collection " + elements, expectedElements, elements.size)
+		return elements
+	} 
 }

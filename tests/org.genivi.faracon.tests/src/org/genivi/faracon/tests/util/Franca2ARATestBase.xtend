@@ -1,22 +1,11 @@
 package org.genivi.faracon.tests.util
 
-import autosar40.util.Autosar40Factory
-import com.google.inject.Inject
-import org.franca.core.dsl.FrancaPersistenceManager
-import org.franca.core.framework.FrancaModelContainer
-import org.franca.core.franca.FrancaFactory
-import org.genivi.faracon.ARAConnector
 import org.genivi.faracon.ARAModelContainer
+import org.genivi.faracon.tests.FaraconTestBase
 
 import static org.junit.Assert.assertNotNull
 
-class Franca2ARATestBase {
-
-	@Inject
-	protected FrancaPersistenceManager loader
-
-	@Inject
-	protected ARAConnector araConnector;
+abstract class Franca2ARATestBase extends FaraconTestBase {
 
 	def void transform(String path, String fileBasename) {
 		doTransformTest(path, fileBasename, false)
@@ -65,14 +54,6 @@ class Franca2ARATestBase {
 //			}
 //			assertEquals(0, nDiffs)
 		}
-	}
-
-	def protected francaFac() {
-		FrancaFactory.eINSTANCE
-	}
-
-	def protected araFac() {
-		Autosar40Factory.eINSTANCE
 	}
 
 }

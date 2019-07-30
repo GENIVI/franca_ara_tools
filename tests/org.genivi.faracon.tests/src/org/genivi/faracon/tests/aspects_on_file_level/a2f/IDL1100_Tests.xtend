@@ -6,10 +6,14 @@ import org.genivi.faracon.tests.util.ARA2FrancaTestBase
 import org.genivi.faracon.tests.util.FaraconTestsInjectorProvider
 import org.junit.Test
 import org.junit.runner.RunWith
-import static org.junit.Assert.fail
-import static extension org.genivi.faracon.tests.util.AssertHelper.*
+
 import static org.junit.Assert.assertEquals
 
+import static extension org.genivi.faracon.tests.util.FaraconAssertHelper.*
+
+/**
+ * Basic tests for package and namespace transformation
+ */
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)
 class IDL1100_Tests extends ARA2FrancaTestBase {

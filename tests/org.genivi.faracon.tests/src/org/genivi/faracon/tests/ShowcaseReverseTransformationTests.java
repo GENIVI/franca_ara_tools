@@ -8,8 +8,7 @@ import org.junit.Test;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
-@RunWith(XtextRunner2_Franca.class)
-@InjectWith(FaraconTestsInjectorProvider.class)
+
 /**
  * 
  * TODO: check whether we still need the show case transformation
@@ -17,6 +16,8 @@ import org.junit.runner.RunWith;
  * as a test that is supposed to check something. 
  *
  */
+@RunWith(XtextRunner2_Franca.class)
+@InjectWith(FaraconTestsInjectorProvider.class)
 public class ShowcaseReverseTransformationTests extends ARA2FrancaTestBase {
 
 	private static final String GENERATED_SHOWCASE_ARA_MODELS = "src-gen/testcases/";
