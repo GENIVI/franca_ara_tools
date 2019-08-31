@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 http://autosar.org/schema/r4.0/autosar40/atls">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="0">
+      <SHORT-NAME>a1</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="0">
+          <SHORT-NAME>b2</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="0">
+              <SHORT-NAME>c3</SHORT-NAME>
+              <ELEMENTS>
+                <SERVICE-INTERFACE UUID="0">
+                  <SHORT-NAME>ExampleInterface</SHORT-NAME>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>a1</SHORT-NAME>
+                      <SYMBOL>a1</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>b2</SHORT-NAME>
+                      <SYMBOL>b2</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>c3</SHORT-NAME>
+                      <SYMBOL>c3</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <METHODS>
+                    <CLIENT-SERVER-OPERATION UUID="0">
+                      <SHORT-NAME>methodWithBasicTypeArguments</SHORT-NAME>
+                      <ARGUMENTS>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>int8_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/Int8</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>int16_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/Int16</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>int32_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/Int32</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>int64_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/Int64</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>integer_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/Int64</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>byteBuffer_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/ByteBuffer</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>double_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/Double</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>float_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/Float</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>string_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/String</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>uint8_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/UInt8</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>uint16_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/UInt16</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>uint32_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/UInt32</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>uint64_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/UInt64</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE UUID="0">
+                          <SHORT-NAME>boolean_field</SHORT-NAME>
+                          <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/Boolean</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                      </ARGUMENTS>
+                    </CLIENT-SERVER-OPERATION>
+                  </METHODS>
+                </SERVICE-INTERFACE>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

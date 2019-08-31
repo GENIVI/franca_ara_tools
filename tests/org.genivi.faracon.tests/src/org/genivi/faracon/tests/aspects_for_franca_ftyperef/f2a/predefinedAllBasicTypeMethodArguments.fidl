@@ -1,0 +1,23 @@
+package a1.b2.c3
+
+interface ExampleInterface {
+	method methodWithBasicTypeArguments {
+		in {
+			Int8 int8_field
+			Int16 int16_field
+			Int32 int32_field
+			Int64 int64_field
+			Integer integer_field
+			ByteBuffer byteBuffer_field
+			Double double_field
+			Float float_field
+			String string_field
+			UInt8 uint8_field
+			UInt16 uint16_field
+			UInt32 uint32_field
+			UInt64 uint64_field
+			Boolean boolean_field
+		}
+	}
+
+}
