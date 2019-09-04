@@ -13,6 +13,7 @@ import org.franca.core.franca.FModel
 import org.franca.core.franca.FTypedElement
 import org.genivi.faracon.ARA2FrancaBase
 import org.genivi.faracon.ARAResourceSet
+import org.franca.core.franca.FTypeRef
 
 @Singleton
 class FrancaTypeCreator extends ARA2FrancaBase {
@@ -103,24 +104,26 @@ class FrancaTypeCreator extends ARA2FrancaBase {
 			return
 		}
 		val keySubElement = src.subElements.get(0)
-		if(!keySubElement.shortName.nullOrEmpty){
+		if (!keySubElement.shortName.nullOrEmpty) {
 			it.addFrancaAnnotation("Key " + ORIGINAL_SUB_ELEMENT_NAME_ANNOTATION, keySubElement.shortName)
 		}
 		val araKeyType = keySubElement.getTypeRefTargetType
-		if(araKeyType !== null){
-			keyType = createFTypeRefAndImport(araKeyType, null)	
-		}else{
-			logger.logError("Cannot create mapping key type for " + ImplementationDataType.simpleName + " " + src.shortName )
+		if (araKeyType !== null) {
+			keyType = createFTypeRefAndImport(araKeyType, null)
+		} else {
+			logger.logError(
+				"Cannot create mapping key type for " + ImplementationDataType.simpleName + " " + src.shortName)
 		}
 		val valueSubElement = src.subElements.get(1)
-		if(!valueSubElement.shortName.nullOrEmpty){
+		if (!valueSubElement.shortName.nullOrEmpty) {
 			it.addFrancaAnnotation("Value " + ORIGINAL_SUB_ELEMENT_NAME_ANNOTATION, valueSubElement.shortName)
 		}
 		val araValueType = valueSubElement.getTypeRefTargetType
-		if(araValueType !== null){
-			valueType = createFTypeRefAndImport(araValueType, null)			
-		}else{
-			logger.logError("Cannot create mapping value type for " + ImplementationDataType.simpleName + " " + src.shortName )
+		if (araValueType !== null) {
+			valueType = createFTypeRefAndImport(araValueType, null)
+		} else {
+			logger.logError(
+				"Cannot create mapping value type for " + ImplementationDataType.simpleName + " " + src.shortName)
 		}
 	}
 
@@ -183,7 +186,7 @@ class FrancaTypeCreator extends ARA2FrancaBase {
 		val typeRef = fac.createFTypeRef
 		if (isPrimitiveType(src)) {
 			if (src.isStdType) {
-				typeRef.predefined = FBasicTypeId.getByName(src.shortName)
+				typeRef.setPrimitveTypeBasedOnName(src, parentTypedElement)
 			} else {
 				val nonVectorName = src.shortName.replace("Vector", "")
 				typeRef.predefined = FBasicTypeId.getByName(nonVectorName)
@@ -196,6 +199,20 @@ class FrancaTypeCreator extends ARA2FrancaBase {
 			typeRef.derived = transform(src)
 		}
 		typeRef
+	}
+
+	def void setPrimitveTypeBasedOnName(FTypeRef fTypeRef, ImplementationDataType src, FTypedElement parentTypedElement) {
+		val autosarShortName = src.shortName
+		if (autosarShortName == "ByteArray" || autosarShortName == "ByteVectorType") {
+			fTypeRef.predefined = FBasicTypeId.UINT8
+			if(parentTypedElement === null){
+				logger.logError('''The simple type «autosarShortName» cannot be used within because no Franca Typed parent has been created for the element «src»''')
+			}else{
+				parentTypedElement.array = true	
+			}
+		} else {
+			fTypeRef.predefined = FBasicTypeId.getByName(src.shortName)
+		}
 	}
 
 	/**
