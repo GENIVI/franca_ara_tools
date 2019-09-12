@@ -8,6 +8,7 @@ import org.franca.core.franca.FBasicTypeId
 import org.franca.core.franca.FCompoundType
 import org.franca.core.franca.FModel
 import org.genivi.faracon.ARA2FrancaBase
+import autosar40.commonstructure.implementationdatatypes.ArraySizeSemanticsEnum
 
 @Singleton
 class FrancaTypeCreator extends ARA2FrancaBase {
@@ -110,7 +111,20 @@ class FrancaTypeCreator extends ARA2FrancaBase {
 	def private create fac.createFArrayType transformArray(ImplementationDataType src) {
 		name = src.shortName
 
-		val araElementType = getPropertyType(src, "valueType")
+		val dataTypeSubElements = src.subElements
+		if (dataTypeSubElements.size !== 1) {
+			// we expect exactly one sub element, otherwise, we consider that as an error
+			logger.logError('''Found «dataTypeSubElements.size» sub elements for «ImplementationDataType» «src.shortName». For vectors only one is allowed.«
+			» No inner type for the Franca array can be created.''')
+			return
+		}
+		val firstSubElement = dataTypeSubElements.get(0)
+		if (firstSubElement.arraySizeSemantics != ArraySizeSemanticsEnum.VARIABLE_SIZE) {
+			logger.
+				logWarning('''The VECTOR type "«src.shortName»" has not array semantic «firstSubElement.arraySizeSemantics». Only VARIABLE_SIZE arrays are supported in the transformation.''')
+		}
+		val araElementType = firstSubElement.typeRefTargetType
+
 		if (araElementType !== null) {
 			elementType = createFTypeRefAndImport(araElementType)
 		} else {

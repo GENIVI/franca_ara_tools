@@ -27,6 +27,7 @@ import org.genivi.faracon.util.AutosarAnnotator
 import static extension org.franca.core.FrancaModelExtensions.*
 import static extension org.genivi.faracon.franca2ara.ARATypeHelper.*
 import static extension org.genivi.faracon.franca2ara.FConstantHelper.*
+import autosar40.commonstructure.implementationdatatypes.ArraySizeSemanticsEnum
 
 @Singleton
 class ARATypeCreator extends Franca2ARABase {
@@ -251,6 +252,7 @@ class ARATypeCreator extends Franca2ARABase {
 		vectorImplementationDataType.ARPackage = findArPackageForFrancaElement(fTypedElement)
 		vectorImplementationDataType.subElements += fac.createImplementationDataTypeElement => [
 			shortName = "valueType"
+			it.arraySizeSemantics = ArraySizeSemanticsEnum.VARIABLE_SIZE
 			it.category = "TYPE_REFERENCE"
 			swDataDefProps = fac.createSwDataDefProps => [
 				swDataDefPropsVariants += fac.createSwDataDefPropsConditional => [

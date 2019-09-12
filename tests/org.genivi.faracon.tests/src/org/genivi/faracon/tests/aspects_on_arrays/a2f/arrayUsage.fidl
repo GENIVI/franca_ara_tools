@@ -1,0 +1,22 @@
+package a1.b2.c3
+
+
+typeCollection {
+	array simpleArray of UInt16
+
+	array structArray of TestStruct
+
+	struct TestStruct {
+		Int32 testMember
+	}
+}
+
+interface TestInterface{
+	method testMethod{
+		in{
+			simpleArray simpleArrayIn
+			structArray structArrayIn
+		}
+	}
+	
+}
