@@ -2,7 +2,10 @@ package a1.b2.c3
 
 typeCollection {
 	array simpleArray of UInt16
-
+	
+	<**
+		@source-alias : Faracon: OriginalSubElementName: valueType
+	**>
 	array structArray of TestStruct
 
 	struct TestStruct {

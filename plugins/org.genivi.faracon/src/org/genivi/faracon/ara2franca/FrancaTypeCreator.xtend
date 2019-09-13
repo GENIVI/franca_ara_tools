@@ -1,5 +1,6 @@
 package org.genivi.faracon.ara2franca
 
+import autosar40.commonstructure.implementationdatatypes.ArraySizeSemanticsEnum
 import autosar40.commonstructure.implementationdatatypes.ImplementationDataType
 import autosar40.commonstructure.implementationdatatypes.ImplementationDataTypeElement
 import javax.inject.Inject
@@ -13,10 +14,14 @@ import autosar40.commonstructure.implementationdatatypes.ArraySizeSemanticsEnum
 @Singleton
 class FrancaTypeCreator extends ARA2FrancaBase {
 
+	val static ORIGINAL_SUB_ELEMENT_NAME_ANNOTATION = "OriginalSubElementName"
+
 	@Inject
 	var extension FrancaEnumCreator
 	@Inject
 	var extension FrancaImportCreator francaImportCreator
+	@Inject
+	var extension FrancaAnnotationCreator
 
 	def transform(ImplementationDataType src) {
 		if (src === null) {
@@ -119,12 +124,15 @@ class FrancaTypeCreator extends ARA2FrancaBase {
 			return
 		}
 		val firstSubElement = dataTypeSubElements.get(0)
+		if(!firstSubElement.shortName.nullOrEmpty){
+			it.addFrancaAnnotation(ORIGINAL_SUB_ELEMENT_NAME_ANNOTATION, firstSubElement.shortName)	
+		}
 		if (firstSubElement.arraySizeSemantics != ArraySizeSemanticsEnum.VARIABLE_SIZE) {
 			logger.
 				logWarning('''The VECTOR type "«src.shortName»" has not array semantic «firstSubElement.arraySizeSemantics». Only VARIABLE_SIZE arrays are supported in the transformation.''')
 		}
 		val araElementType = firstSubElement.typeRefTargetType
-
+		
 		if (araElementType !== null) {
 			elementType = createFTypeRefAndImport(araElementType)
 		} else {
