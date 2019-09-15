@@ -128,7 +128,7 @@ abstract class ARA2FrancaTestBase extends FaraconTestBase {
 	protected def ARAModelContainer wrapInModelContainer(AUTOSAR arModel) {
 		var ARAResourceSet araResourceSet = arModel?.eResource?.resourceSet as ARAResourceSet
 		araResourceSet = if(null === araResourceSet) new ARAResourceSet else araResourceSet
-		val autosarModelContainer = new ARAModelContainer(arModel, araResourceSet.standardTypeDefinitionsModel)
+		val autosarModelContainer = new ARAModelContainer(arModel, araResourceSet.araStandardTypeDefinitionsModel)
 		autosarModelContainer
 	}
 

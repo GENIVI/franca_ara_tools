@@ -17,7 +17,7 @@ class ARAPrimitveTypesCreator extends Franca2ARABase {
 	def ARPackage createPrimitiveTypesPackage(ARAResourceSet araResourceSet) {
 		val ARAResourceSet araResourceSetLocal = 
 			if (araResourceSet === null) new ARAResourceSet() else araResourceSet
-		val AUTOSAR primitiveTypesModel = araResourceSetLocal.standardTypeDefinitionsModel
+		val AUTOSAR primitiveTypesModel = araResourceSetLocal.araStandardTypeDefinitionsModel.standardTypeDefinitionsModel
 		val topLevelPackage = primitiveTypesModel.arPackages.get(0)
 		primitiveTypesModel.eAllContents.filter(ImplementationDataType).forEach[
 			nameToType.put(it.shortName,it)

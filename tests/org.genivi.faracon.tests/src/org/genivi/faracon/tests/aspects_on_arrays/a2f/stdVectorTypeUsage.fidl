@@ -1,0 +1,11 @@
+package a1.b2.c3
+
+
+interface TestInterface{
+	method testMethod{
+		in{
+			UInt32[] simpleArrayIn
+		}
+	}
+	
+}

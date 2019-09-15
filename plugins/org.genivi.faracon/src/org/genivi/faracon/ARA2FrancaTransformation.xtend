@@ -72,14 +72,14 @@ class ARA2FrancaTransformation extends ARA2FrancaBase {
 			// As there is no "real" name for the out-parameter in AUTOSAR,
 			// we reuse the name of the VariableDataPrototoype
 			name = src.shortName
-			type = createFTypeRefAndImport(src.type as ImplementationDataType)
+			type = createFTypeRefAndImport(src.type as ImplementationDataType, it)
 		]
 		outArgs.add(outArg)
 	}
 
 	def create fac.createFAttribute transform(Field src) {
 		name = src.shortName
-		type = createFTypeRefAndImport(src.type as ImplementationDataType)
+		type = createFTypeRefAndImport(src.type as ImplementationDataType, it)
 		noRead = !src.hasGetter
 		noSubscriptions = !src.hasNotifier
 		readonly = !src.hasSetter
@@ -107,7 +107,7 @@ class ARA2FrancaTransformation extends ARA2FrancaBase {
 	def create fac.createFArgument transform(ArgumentDataPrototype src) {
 		name = src.shortName
 		if (src.type !== null) {
-			type = createFTypeRefAndImport(src.type as ImplementationDataType)
+			type = createFTypeRefAndImport(src.type as ImplementationDataType, it)
 		} else {
 			logger.
 				logError('''Cannot create type for franca argument "«name»" because the Autosar argument has no type''')

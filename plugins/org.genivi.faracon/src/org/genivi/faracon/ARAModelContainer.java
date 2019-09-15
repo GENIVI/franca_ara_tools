@@ -12,16 +12,16 @@ import autosar40.autosartoplevelstructure.AUTOSAR;
 
 public class ARAModelContainer implements IModelContainer {
 
-	private AUTOSAR primitiveTypesModel = null;
+	private AraStandardTypeDefinitionsModel araStandardTypeDefinitionsModel = null;
 	private AUTOSAR model = null;
 	
-	public ARAModelContainer(AUTOSAR model, AUTOSAR primitiveTypesModel) {
-		this.primitiveTypesModel = primitiveTypesModel;
+	public ARAModelContainer(AUTOSAR model, AraStandardTypeDefinitionsModel araStandardTypeDefinitionsModel) {
+		this.araStandardTypeDefinitionsModel = araStandardTypeDefinitionsModel;
 		this.model = model;
 	}
 	
-	public AUTOSAR primitiveTypesModel() {
-		return primitiveTypesModel;
+	public AraStandardTypeDefinitionsModel araStandardTypeDefinitionsModel() {
+		return araStandardTypeDefinitionsModel;
 	}
 	
 	public AUTOSAR model() {

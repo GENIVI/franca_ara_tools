@@ -35,12 +35,9 @@ public class EclipseUiLogger extends AbstractLogger {
   
   private MessageConsole getConsole() {
     final IConsoleManager consoleManager = ConsolePlugin.getDefault().getConsoleManager();
-    final Function1<IConsole, Boolean> _function = new Function1<IConsole, Boolean>() {
-      @Override
-      public Boolean apply(final IConsole it) {
-        String _name = it.getName();
-        return Boolean.valueOf(Objects.equal(_name, EclipseUiLogger.FARACON_CONSOLE));
-      }
+    final Function1<IConsole, Boolean> _function = (IConsole it) -> {
+      String _name = it.getName();
+      return Boolean.valueOf(Objects.equal(_name, EclipseUiLogger.FARACON_CONSOLE));
     };
     IConsole faraconConsole = IterableExtensions.<IConsole>findFirst(((Iterable<IConsole>)Conversions.doWrapArray(consoleManager.getConsoles())), _function);
     if ((null == faraconConsole)) {

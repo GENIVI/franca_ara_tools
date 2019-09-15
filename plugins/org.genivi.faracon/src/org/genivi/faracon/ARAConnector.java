@@ -62,7 +62,7 @@ public class ARAConnector extends BaseWithLogger implements IFrancaConnector {
 //			else
 //				getLogger().logInfo("Loaded arxml model (first package " + packages.get(0).getShortName() + ")");
 		}
-		return new ARAModelContainer(model, araResourceSet.getStandardTypeDefinitionsModel());
+		return new ARAModelContainer(model, araResourceSet.getAraStandardTypeDefinitionsModel());
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class ARAConnector extends BaseWithLogger implements IFrancaConnector {
 		}
 
 		ARAModelContainer mc = (ARAModelContainer) model;
-		return saveARXML(new ARAResourceSet(mc.primitiveTypesModel()), mc.model()/*, mc.getComments()*/, filename);
+		return saveARXML(new ARAResourceSet(mc.araStandardTypeDefinitionsModel()), mc.model()/*, mc.getComments()*/, filename);
 	}
 
 	@Override

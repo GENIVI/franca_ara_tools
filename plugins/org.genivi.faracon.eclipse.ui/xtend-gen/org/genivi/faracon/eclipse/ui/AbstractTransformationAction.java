@@ -54,17 +54,14 @@ public abstract class AbstractTransformationAction implements IObjectActionDeleg
     this.converter = this.initConverter();
     this.logger = this.converter.getLogger();
     final Collection<IFile> relevantIFiles = this.findRelevantFilesInSelection();
-    final Function1<IFile, String> _function = new Function1<IFile, String>() {
-      @Override
-      public String apply(final IFile it) {
-        try {
-          IFileStore _store = EFS.getStore(it.getLocationURI());
-          NullProgressMonitor _nullProgressMonitor = new NullProgressMonitor();
-          final File file = _store.toLocalFile(0, _nullProgressMonitor);
-          return file.getAbsolutePath();
-        } catch (Throwable _e) {
-          throw Exceptions.sneakyThrow(_e);
-        }
+    final Function1<IFile, String> _function = (IFile it) -> {
+      try {
+        IFileStore _store = EFS.getStore(it.getLocationURI());
+        NullProgressMonitor _nullProgressMonitor = new NullProgressMonitor();
+        final File file = _store.toLocalFile(0, _nullProgressMonitor);
+        return file.getAbsolutePath();
+      } catch (Throwable _e) {
+        throw Exceptions.sneakyThrow(_e);
       }
     };
     final Iterable<String> filePaths = IterableExtensions.<IFile, String>map(relevantIFiles, _function);
@@ -87,11 +84,8 @@ public abstract class AbstractTransformationAction implements IObjectActionDeleg
     final StructuredSelection structuredSelection = ((StructuredSelection) this.selection);
     final List selectedElements = structuredSelection.toList();
     final HashSet<IFile> relevantFiles = CollectionLiterals.<IFile>newHashSet();
-    final Consumer<Object> _function = new Consumer<Object>() {
-      @Override
-      public void accept(final Object it) {
-        AbstractTransformationAction.this.findRelevantFiles(it, relevantFiles);
-      }
+    final Consumer<Object> _function = (Object it) -> {
+      this.findRelevantFiles(it, relevantFiles);
     };
     selectedElements.forEach(_function);
     return relevantFiles;
@@ -116,11 +110,8 @@ public abstract class AbstractTransformationAction implements IObjectActionDeleg
   
   protected void _findRelevantFiles(final IContainer iFolder, final Set<IFile> relevantFiles) {
     try {
-      final Consumer<IResource> _function = new Consumer<IResource>() {
-        @Override
-        public void accept(final IResource it) {
-          AbstractTransformationAction.this.findRelevantFiles(it, relevantFiles);
-        }
+      final Consumer<IResource> _function = (IResource it) -> {
+        this.findRelevantFiles(it, relevantFiles);
       };
       ((List<IResource>)Conversions.doWrapArray(iFolder.members())).forEach(_function);
     } catch (Throwable _e) {

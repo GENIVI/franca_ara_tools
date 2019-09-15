@@ -69,7 +69,7 @@ class IDL1120_Tests extends ARA2FrancaTestBase {
 			]
 		]
 		val araContainer = new ARAModelContainer(autosarFileWithNamespace,
-			new ARAResourceSet().standardTypeDefinitionsModel)
+			new ARAResourceSet().araStandardTypeDefinitionsModel)
 		return araContainer
 	}
 }
