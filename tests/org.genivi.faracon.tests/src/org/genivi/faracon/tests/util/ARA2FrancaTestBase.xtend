@@ -65,10 +65,8 @@ abstract class ARA2FrancaTestBase extends FaraconTestBase {
 		val expectedFrancaModels = expectedFilePaths.map [
 			loader.loadModel(it);
 		].toList
-		ara2FrancaConverter.createResourceSet
-		val araModelContainers = ara2FrancaConverter.loadAllSourceFiles(Collections.singletonList(sourceFilePath))
-		ara2FrancaConverter.resolveProxiesAndCheckRemaining
-		val arModel = (araModelContainers).get(0).model
+		val araModelContainer = araConnector.loadModel(new ARAResourceSet, sourceFilePath) as ARAModelContainer
+		val arModel = araModelContainer.model
 		transformAndCheck(arModel, expectedFrancaModels)
 	}
 
@@ -121,11 +119,7 @@ abstract class ARA2FrancaTestBase extends FaraconTestBase {
 	}
 
 	protected def List<FModel> transformToFranca(IModelContainer arModel) {
-		val transformationResult = ara2FrancaConverter.transform(
-			Collections.singletonList(arModel as ARAModelContainer))
-		ara2FrancaConverter.putAllModelsInOneResourceSet(transformationResult)
-		ara2FrancaConverter.saveAllGeneratedModels(transformationResult)
-		val francaMultiModelContainer = transformationResult.map[value]
+		val francaMultiModelContainer = ara2FrancaConverter.convertModelContainersAndSaveResults(Collections.singletonList(arModel as ARAModelContainer))
 		val allFrancaModelContainer = francaMultiModelContainer.map[it.francaModelContainers]
 		val francaModels = allFrancaModelContainer.flatten.map[it.model].toList
 		return francaModels

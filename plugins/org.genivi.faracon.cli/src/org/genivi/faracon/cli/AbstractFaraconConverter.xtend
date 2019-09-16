@@ -34,14 +34,25 @@ abstract class AbstractFaraconConverter<SRC extends IModelContainer, TAR extends
 		resourceSet = createResourceSet
 		val modelContainers = filesToConvert.loadAllSourceFiles
 		resolveProxiesAndCheckRemaining
-		val srcToTargetContainer = modelContainers.transform
-		srcToTargetContainer.putAllModelsInOneResourceSet
-		srcToTargetContainer.saveAllGeneratedModels
+		convertModelContainersAndSaveResults(modelContainers)
 
 		getLogger().decreaseIndentationLevel();
 	}
+	
+	def convertModelContainersAndSaveResults(Collection<SRC> modelContainers) {
+		val srcToTargetContainer = modelContainers.transform
+		srcToTargetContainer.putAllModelsInOneResourceSet
+		srcToTargetContainer.saveAllGeneratedModels
+		return srcToTargetContainer.map[it.value]
+	}
+	
+	def loadFilesAndCheckProxies(Collection<String> filesToConvert){
+		resourceSet = createResourceSet
+		filesToConvert.loadAllSourceFiles
+		return resolveProxiesAndCheckRemaining
+	}
 
-	def abstract ResourceSet createResourceSet()
+	def protected abstract ResourceSet createResourceSet()
 
 	def protected abstract Collection<SRC> loadAllSourceFiles(Collection<String> filesToConvert)
 
@@ -77,7 +88,7 @@ abstract class AbstractFaraconConverter<SRC extends IModelContainer, TAR extends
 		return outputDirectoryPath
 	}
 
-	def int resolveProxiesAndCheckRemaining() {
+	def private int resolveProxiesAndCheckRemaining() {
 		EcoreUtil.resolveAll(resourceSet);
 		val proxiesAfterResolution = EcoreUtil.ProxyCrossReferencer.find(resourceSet)
 

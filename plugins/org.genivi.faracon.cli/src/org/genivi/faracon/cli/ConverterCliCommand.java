@@ -95,9 +95,8 @@ public class ConverterCliCommand extends CommandlineTool {
 		Collection<String> araFiles = FilePathsHelper.findFiles(araFilePaths, "arxml");
 
 		if(checkArXmlFilesOnly) {
-			ara2FrancaConverter.loadAllSourceFiles(araFiles);
 			setContinueOnErrors(true);
-			int foundRemainingProxies = ara2FrancaConverter.resolveProxiesAndCheckRemaining();
+			int foundRemainingProxies = ara2FrancaConverter.loadFilesAndCheckProxies(araFiles);
 			getLogger().logInfo("Found " + foundRemainingProxies + " unresolved objects in input files.");
 			return foundRemainingProxies;
 		}

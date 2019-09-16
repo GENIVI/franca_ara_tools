@@ -24,7 +24,7 @@ class Ara2FrancaConverter extends AbstractFaraconConverter<ARAModelContainer, Fr
 	/**
 	 * The methods loads all ARA files into a single resource Set and resolves all objects
 	 */
-	override loadAllSourceFiles(Collection<String> araFilePaths) {
+	override protected loadAllSourceFiles(Collection<String> araFilePaths) {
 		val modelContainer = araFilePaths.map [ araFilePath |
 			val normalizedARAFilePath = normalize(araFilePath);
 			getLogger().logInfo("Loading arxml file " + normalizedARAFilePath);
@@ -52,7 +52,7 @@ class Ara2FrancaConverter extends AbstractFaraconConverter<ARAModelContainer, Fr
 		return modelContainer
 	}
 
-	override Collection<Pair<ARAModelContainer, FrancaMultiModelContainer>> transform(
+	override protected Collection<Pair<ARAModelContainer, FrancaMultiModelContainer>> transform(
 		Collection<ARAModelContainer> containers) {
 		containers.map [ araModelContainer |
 			getLogger().logInfo("Converting arxml file " + araModelContainer?.model?.eResource?.URI);
@@ -61,7 +61,7 @@ class Ara2FrancaConverter extends AbstractFaraconConverter<ARAModelContainer, Fr
 		].toList
 	}
 
-	override putAllModelsInOneResourceSet(
+	override protected putAllModelsInOneResourceSet(
 		Collection<Pair<ARAModelContainer, FrancaMultiModelContainer>> ara2FrancaMultiModelContainers) {
 		val resourceSet = new XtextResourceSet();
 		ara2FrancaMultiModelContainers.forEach [
@@ -75,7 +75,7 @@ class Ara2FrancaConverter extends AbstractFaraconConverter<ARAModelContainer, Fr
 		]
 	}
 
-	override saveAllGeneratedModels(
+	override protected saveAllGeneratedModels(
 		Collection<Pair<ARAModelContainer, FrancaMultiModelContainer>> ara2FrancaMultiModelContainers) {
 		ara2FrancaMultiModelContainers.forEach [
 			it.value.francaModelContainers.forEach [ francaModelContainer |
@@ -100,7 +100,7 @@ class Ara2FrancaConverter extends AbstractFaraconConverter<ARAModelContainer, Fr
 
 	override protected getTargetArtifactName() '''Franca IDL'''
 	
-	override createResourceSet() {
+	override protected createResourceSet() {
 		this.resourceSet = new ARAResourceSet
 		return this.resourceSet
 	}
