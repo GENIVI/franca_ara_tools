@@ -56,4 +56,9 @@ class IDL1540_Tests extends ARA2FrancaTestBase {
 		transformAndCheck(testPath + "stdVectorTypeUsage.arxml", testPath + "stdVectorTypeUsage.fidl")
 	}
 
+	@Test
+	def void testArrayFixedSizeUsage(){
+		transformAndCheck(testPath + "arrayFixedSizeUsage.arxml", testPath + "arrayFixedSizeUsage.fidl")
+	}
+
 }

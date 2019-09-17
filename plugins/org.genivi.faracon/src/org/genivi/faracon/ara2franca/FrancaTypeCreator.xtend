@@ -40,6 +40,9 @@ class FrancaTypeCreator extends ARA2FrancaBase {
 			return transformEnumeration(src)
 		} else if (src.category == "VECTOR") {
 			return transformArray(src)
+		} else if (src.category == "ARRAY") {
+			logger.logWarning('''Category ARRAY used in «ImplementationDataType» «src.shortName» is not fully supported yet. Using the same logic as for category "VECTOR"''')
+			return transformArray(src)
 		} else {
 			getLogger.
 				logWarning('''Cannot create Franca type for "«src.shortName»" because AutosarDatatypes of category "«src.category»" are not yet supported''')
@@ -127,9 +130,12 @@ class FrancaTypeCreator extends ARA2FrancaBase {
 		if (!firstSubElement.shortName.nullOrEmpty) {
 			it.addFrancaAnnotation(ORIGINAL_SUB_ELEMENT_NAME_ANNOTATION, firstSubElement.shortName)
 		}
-		if (firstSubElement.arraySizeSemantics != ArraySizeSemanticsEnum.VARIABLE_SIZE) {
+		
+		if(firstSubElement.arraySizeSemantics == ArraySizeSemanticsEnum.FIXED_SIZE){
 			logger.
-				logWarning('''The VECTOR type "«src.shortName»" has not array semantic «firstSubElement.arraySizeSemantics». Only VARIABLE_SIZE arrays are supported in the transformation.''')
+				logWarning('''The type "«src.shortName»" has array semantic «firstSubElement.arraySizeSemantics». Only experimental support for fixed size arrays is supported.''')
+			val fixedArraySize = firstSubElement.arraySize?.mixedText
+			it.addExperimentalArraySizeAnnotation(fixedArraySize)
 		}
 		val araElementType = firstSubElement.typeRefTargetType
 
