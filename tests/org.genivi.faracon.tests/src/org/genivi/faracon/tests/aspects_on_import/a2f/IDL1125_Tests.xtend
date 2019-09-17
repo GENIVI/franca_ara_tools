@@ -18,30 +18,35 @@ class IDL1125_Tests extends ARA2FrancaTestBase {
 
 	@Test
 	def void testMultipleFilesFromAutosarWithImport() {
-		transformAndCheck(testPath + "fileWithImport.arxml",
-			#[testPath + "fileWithImport_a1.b2.c3.fidl", testPath + "fileWithImport_a1.b2.c3.d4.fidl"])
+		transformAndCheckIntegrationTest(#[testPath + "fileWithImport.arxml"],
+			#[testPath + "fileWithImport_a1.b2.c3.fidl", testPath + "fileWithImport_a1.b2.c3.d4.fidl"],
+			"testMultipleFilesFromAutosarWithImport")
 	}
 
 	@Test
 	def void testMultipleFilesWithMultipleInterfacesAndTypesWithImport() {
-		transformAndCheck(
-			testPath + "fileWithMultiImport.arxml",
+		transformAndCheckIntegrationTest(
+			#[testPath + "fileWithMultiImport.arxml"],
 			#[testPath + "fileWithMultiImport_a1.b2.c3.fidl", testPath + "fileWithMultiImport_a1.b2.c3.d4.fidl",
-				testPath + "fileWithMultiImport_a1.b2.c3.d4.e5.fidl"]
+				testPath + "fileWithMultiImport_a1.b2.c3.d4.e5.fidl"],
+			"testMultipleFilesWithMultipleInterfacesAndTypesWithImport"
 		)
 	}
 
 	@Test
 	def void testMultipleInputToMultipleOutFiles() {
-		transformAndCheckIntegrationTest(#[testPath + "fileWithMultiImportPart1.arxml", testPath + "fileWithMultiImportPart2.arxml"],
-		#[testPath + "fileWithMultiImportPart1_a1.b2.c3.fidl", testPath + "fileWithMultiImportPart2_a1.b2.c3.d4.fidl",
-			testPath + "fileWithMultiImportPart2_a1.b2.c3.d4.e5.fidl"], "IDL1125_testMultipleInputToMultipleOutFiles")
+		transformAndCheckIntegrationTest(
+			#[testPath + "fileWithMultiImportPart1.arxml", testPath + "fileWithMultiImportPart2.arxml"],
+			#[testPath + "fileWithMultiImportPart1_a1.b2.c3.fidl",
+				testPath + "fileWithMultiImportPart2_a1.b2.c3.d4.fidl",
+				testPath + "fileWithMultiImportPart2_a1.b2.c3.d4.e5.fidl"],
+			"IDL1125_testMultipleInputToMultipleOutFiles")
 	}
 
-	@Test(expected = AbstractLogger.StopOnErrorException)
+	@Test(expected=AbstractLogger.StopOnErrorException)
 	def void testSingleInputFileToMultipleFrancaFiles() {
-		transformAndCheck(testPath + "fileWithMultiImportPart1.arxml",
+		transformAndCheckIntegrationTest(#[testPath + "fileWithMultiImportPart1.arxml"],
 			#[testPath + "fileWithMultiImport_a1.b2.c3.fidl", testPath + "fileWithMultiImport_a1.b2.c3.d4.fidl",
-				testPath + "fileWithMultiImport_a1.b2.c3.d4.e5.fidl"])
+				testPath + "fileWithMultiImport_a1.b2.c3.d4.e5.fidl"], "testSingleInputFileToMultipleFrancaFiles")
 	}
 }
