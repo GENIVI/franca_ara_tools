@@ -1,0 +1,33 @@
+package a1.b2.c3
+
+typeCollection {
+	<**
+		@source-alias : Faracon: Key OriginalSubElementName: myKeyType
+		
+		@source-alias : Faracon: Value OriginalSubElementName: myValueType
+	
+	**>
+	map simpleMap { UInt16 to UInt32 }
+
+	<**
+		@source-alias : Faracon: Key OriginalSubElementName: myStructKeyType
+		
+		@source-alias : Faracon: Value OriginalSubElementName: myUint32ValueType
+	
+	**>
+	map structMap { TestStruct to UInt32 }
+
+	struct TestStruct {
+		Int32 testMember
+	}
+}
+
+interface TestInterface{
+	method testMethod {
+		in {
+			simpleMap simpleMapIn
+			structMap structMapIn
+		}
+	}
+
+}

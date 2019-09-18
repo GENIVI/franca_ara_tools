@@ -15,8 +15,7 @@ import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
 
 /**
- * Tests Events to Broadcasts
- * Also covers IDL 1370 and IDL1380 for Autosar to Franca.
+ * Tests aspects on arrays from Autosar to Franca
  */
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)
