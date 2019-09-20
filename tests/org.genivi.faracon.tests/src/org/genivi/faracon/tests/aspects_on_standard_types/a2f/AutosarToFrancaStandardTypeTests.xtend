@@ -23,7 +23,7 @@ import static org.junit.Assert.assertTrue
  */
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)
-class AutosarStandardTypeTests extends ARA2FrancaTestBase {
+class AutosarToFrancaStandardTypeTests extends ARA2FrancaTestBase {
 
 	/**Transforms all types in the stdtypes.arxml to franca and ensures that no error occurs */
 	@Test

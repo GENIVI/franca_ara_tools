@@ -30,6 +30,10 @@ class ARAPrimitveTypesCreator extends Franca2ARABase {
 		if(!this.nameToType.containsKey(fBasicTypeId.getName)){
 			getLogger.logError("Can not find an AUTOSAR simple type for the FBasicTypeId: " + fBasicTypeId?.getName + "! (IDL2620)")
 		}
+		if(fBasicTypeId == FBasicTypeId.BYTE_BUFFER){
+			logger.logError('''Cannot convert Franca ByteBuffer to an Autosar simple type.''')
+			return this.nameToType.get("ByteVectorType")
+		}
 		this.nameToType.get(fBasicTypeId.getName)
 	}
 
