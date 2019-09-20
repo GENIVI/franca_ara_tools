@@ -80,6 +80,17 @@
               </SW-DATA-DEF-PROPS>
             </IMPLEMENTATION-DATA-TYPE>
             <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>Int64</SHORT-NAME>
+              <CATEGORY>VALUE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <BASE-TYPE-REF DEST="SW-BASE-TYPE">/ara/stdtypes/std_int64_t</BASE-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
               <SHORT-NAME>Int8</SHORT-NAME>
               <CATEGORY>VALUE</CATEGORY>
               <SW-DATA-DEF-PROPS>
@@ -117,6 +128,17 @@
               </SW-DATA-DEF-PROPS>
             </IMPLEMENTATION-DATA-TYPE>
             <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>UInt64</SHORT-NAME>
+              <CATEGORY>VALUE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <BASE-TYPE-REF DEST="SW-BASE-TYPE">/ara/stdtypes/std_uint64_t</BASE-TYPE-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+            </IMPLEMENTATION-DATA-TYPE>
+            <IMPLEMENTATION-DATA-TYPE>
               <SHORT-NAME>UInt8</SHORT-NAME>
               <CATEGORY>VALUE</CATEGORY>
               <SW-DATA-DEF-PROPS>
@@ -127,20 +149,24 @@
                 </SW-DATA-DEF-PROPS-VARIANTS>
               </SW-DATA-DEF-PROPS>
             </IMPLEMENTATION-DATA-TYPE>
-	    <!-- AUTOSAR_SWS_AdaptiveDiagnostics.pdf, 8.1.1.7 -->
-	    <IMPLEMENTATION-DATA-TYPE>
-	      <SHORT-NAME>ByteVectorType</SHORT-NAME>
-	      <CATEGORY>VECTOR</CATEGORY>
-	      <SUB-ELEMENTS>
-	        <IMPLEMENTATION-DATA-TYPE-ELEMENT>
-	          <SHORT-NAME>Dim1Element</SHORT-NAME>
-	          <CATEGORY>TYPE_REFERENCE</CATEGORY>
-	          <SW-DATA-DEF-PROPS><SW-DATA-DEF-PROPS-VARIANTS><SW-DATA-DEF-PROPS-CONDITIONAL>
-	          <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/UInt8</IMPLEMENTATION-DATA-TYPE-REF>
-	          </SW-DATA-DEF-PROPS-CONDITIONAL></SW-DATA-DEF-PROPS-VARIANTS></SW-DATA-DEF-PROPS>
-	        </IMPLEMENTATION-DATA-TYPE-ELEMENT>
-	      </SUB-ELEMENTS>
-	    </IMPLEMENTATION-DATA-TYPE>
+            <!-- AUTOSAR_SWS_AdaptiveDiagnostics.pdf, 8.1.1.7 -->
+            <IMPLEMENTATION-DATA-TYPE>
+              <SHORT-NAME>ByteVectorType</SHORT-NAME>
+              <CATEGORY>VECTOR</CATEGORY>
+              <SUB-ELEMENTS>
+                <IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  <SHORT-NAME>Dim1Element</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/ara/stdtypes/UInt8</IMPLEMENTATION-DATA-TYPE-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </IMPLEMENTATION-DATA-TYPE>
             <SW-BASE-TYPE>
               <SHORT-NAME>cpp_bool</SHORT-NAME>
               <CATEGORY>FIXED_LENGTH</CATEGORY>
@@ -182,6 +208,14 @@
               <NATIVE-DECLARATION>std::int32_t</NATIVE-DECLARATION>
             </SW-BASE-TYPE>
             <SW-BASE-TYPE>
+              <SHORT-NAME>std_int64_t</SHORT-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <BASE-TYPE-SIZE>64</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>NONE</BASE-TYPE-ENCODING>
+              <BYTE-ORDER>MOST-SIGNIFICANT-BYTE-LAST</BYTE-ORDER>
+              <NATIVE-DECLARATION>std::int64_t</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+            <SW-BASE-TYPE>
               <SHORT-NAME>std_int8_t</SHORT-NAME>
               <CATEGORY>FIXED_LENGTH</CATEGORY>
               <BASE-TYPE-SIZE>8</BASE-TYPE-SIZE>
@@ -204,6 +238,14 @@
               <BASE-TYPE-ENCODING>NONE</BASE-TYPE-ENCODING>
               <BYTE-ORDER>MOST-SIGNIFICANT-BYTE-LAST</BYTE-ORDER>
               <NATIVE-DECLARATION>std::uint32_t</NATIVE-DECLARATION>
+            </SW-BASE-TYPE>
+            <SW-BASE-TYPE>
+              <SHORT-NAME>std_uint64_t</SHORT-NAME>
+              <CATEGORY>FIXED_LENGTH</CATEGORY>
+              <BASE-TYPE-SIZE>64</BASE-TYPE-SIZE>
+              <BASE-TYPE-ENCODING>NONE</BASE-TYPE-ENCODING>
+              <BYTE-ORDER>MOST-SIGNIFICANT-BYTE-LAST</BYTE-ORDER>
+              <NATIVE-DECLARATION>std::uint64_t</NATIVE-DECLARATION>
             </SW-BASE-TYPE>
             <SW-BASE-TYPE>
               <SHORT-NAME>std_uint8_t</SHORT-NAME>
