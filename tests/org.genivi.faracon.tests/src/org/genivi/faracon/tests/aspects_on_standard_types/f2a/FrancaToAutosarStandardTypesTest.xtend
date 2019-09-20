@@ -14,6 +14,7 @@ import org.junit.runner.RunWith
 
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
+import org.junit.After
 
 /**
  * Covers tests for standard types.
@@ -27,6 +28,11 @@ class FrancaToAutosarStandardTypesTest extends Franca2ARATestBase {
 
 	@Inject
 	var extension ARATypeCreator
+
+	@After
+	def void afterTest(){
+		logger.enableContinueOnErrors(false)
+	}
 
 	@Test
 	def void testFrancaBaseTypes() {

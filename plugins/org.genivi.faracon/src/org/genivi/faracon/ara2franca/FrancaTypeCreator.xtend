@@ -3,17 +3,16 @@ package org.genivi.faracon.ara2franca
 import autosar40.commonstructure.implementationdatatypes.ArraySizeSemanticsEnum
 import autosar40.commonstructure.implementationdatatypes.ImplementationDataType
 import autosar40.commonstructure.implementationdatatypes.ImplementationDataTypeElement
-import java.util.Collection
 import java.util.Optional
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.franca.core.franca.FBasicTypeId
 import org.franca.core.franca.FCompoundType
 import org.franca.core.franca.FModel
+import org.franca.core.franca.FTypeRef
 import org.franca.core.franca.FTypedElement
 import org.genivi.faracon.ARA2FrancaBase
 import org.genivi.faracon.ARAResourceSet
-import org.franca.core.franca.FTypeRef
 
 @Singleton
 class FrancaTypeCreator extends ARA2FrancaBase {
@@ -137,10 +136,11 @@ class FrancaTypeCreator extends ARA2FrancaBase {
 			it.addFrancaAnnotation(ORIGINAL_SUB_ELEMENT_NAME_ANNOTATION, firstSubElement.shortName)
 		}
 
-		if (firstSubElement.arraySizeSemantics == ArraySizeSemanticsEnum.FIXED_SIZE) {
+		val fixedArraySize = firstSubElement.arraySize?.mixedText
+		if (firstSubElement.arraySizeSemantics == ArraySizeSemanticsEnum.FIXED_SIZE &&
+			fixedArraySize !== null) {
 			logger.
 				logWarning('''The type "«src.shortName»" has array semantic «firstSubElement.arraySizeSemantics». Only experimental support for fixed size arrays is supported.''')
-			val fixedArraySize = firstSubElement.arraySize?.mixedText
 			it.addExperimentalArraySizeAnnotation(fixedArraySize)
 		}
 		val araElementType = firstSubElement.typeRefTargetType
@@ -201,14 +201,16 @@ class FrancaTypeCreator extends ARA2FrancaBase {
 		typeRef
 	}
 
-	def void setPrimitveTypeBasedOnName(FTypeRef fTypeRef, ImplementationDataType src, FTypedElement parentTypedElement) {
+	def void setPrimitveTypeBasedOnName(FTypeRef fTypeRef, ImplementationDataType src,
+		FTypedElement parentTypedElement) {
 		val autosarShortName = src.shortName
 		if (autosarShortName == "ByteArray" || autosarShortName == "ByteVectorType") {
 			fTypeRef.predefined = FBasicTypeId.UINT8
-			if(parentTypedElement === null){
-				logger.logError('''The simple type «autosarShortName» cannot be used within because no Franca Typed parent has been created for the element «src»''')
-			}else{
-				parentTypedElement.array = true	
+			if (parentTypedElement === null) {
+				logger.
+					logError('''The simple type «autosarShortName» cannot be used within because no Franca Typed parent has been created for the element «src»''')
+			} else {
+				parentTypedElement.array = true
 			}
 		} else {
 			fTypeRef.predefined = FBasicTypeId.getByName(src.shortName)
