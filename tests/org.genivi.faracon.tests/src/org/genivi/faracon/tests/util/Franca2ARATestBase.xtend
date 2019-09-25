@@ -55,7 +55,7 @@ abstract class Franca2ARATestBase extends FaraconTestBase {
 		// assert
 		val autosarModelPaths = Preferences.instance.getPreference(PreferencesConstants.P_OUTPUT_DIRECTORY_PATH, null)
 		assertNotNull("no outputpath found", autosarModelPaths)
-		val actualAutosarFiles = FilePathsHelper.findFiles(#[autosarModelPaths], "arxml")
+		val actualAutosarFiles = findArxmlFilesStdFiles(autosarModelPaths, true)
 		actualAutosarFiles.forEach [ autosarFileName |
 			// load autosar models and set UUID to 0
 			val modelContainer = araConnector.loadModel(autosarFileName) as ARAModelContainer
@@ -63,6 +63,14 @@ abstract class Franca2ARATestBase extends FaraconTestBase {
 			araConnector.saveModel(modelContainer, autosarFileName)
 		]
 		assertAutosarFilesAreEqual(actualAutosarFiles, expectedFilePaths)
+	}
+	
+	protected def Collection<String> findArxmlFilesStdFiles(String autosarModelPaths, boolean ignoreStdFiles) {
+		val arxmlFiles = FilePathsHelper.findFiles(#[autosarModelPaths], "arxml")
+		if(ignoreStdFiles){
+			return arxmlFiles.filter[!it.endsWith("stdtypes.arxml") && !it.endsWith("stdtypes_vector.arxml")].toList	
+		}
+		return arxmlFiles
 	}
 
 	def private void transformtionTest(String path, String fileBasename, String expectedFileName, boolean check) {

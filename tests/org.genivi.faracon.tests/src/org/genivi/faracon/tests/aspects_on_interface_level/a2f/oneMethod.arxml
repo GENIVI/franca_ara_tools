@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 http://autosar.org/schema/r4.0/autosar40/atls">
   <AR-PACKAGES>
-    <AR-PACKAGE UUID="d767ea8d-3373-402a-8176-85171b38bf23">
+    <AR-PACKAGE UUID="0">
       <SHORT-NAME>a1</SHORT-NAME>
       <AR-PACKAGES>
-        <AR-PACKAGE UUID="40fda676-0688-4619-a551-10aa860d4182">
+        <AR-PACKAGE UUID="0">
           <SHORT-NAME>b2</SHORT-NAME>
           <AR-PACKAGES>
-            <AR-PACKAGE UUID="9a8c74c1-9cb9-4cf6-9fbc-05fb8d825969">
+            <AR-PACKAGE UUID="0">
               <SHORT-NAME>c3</SHORT-NAME>
               <ELEMENTS>
-                <SERVICE-INTERFACE UUID="a533bab4-a4cb-416d-8538-0034d2904f49">
+                <SERVICE-INTERFACE UUID="0">
                   <SHORT-NAME>ExampleInterface</SHORT-NAME>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>a1</SHORT-NAME>
+                      <SYMBOL>a1</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>b2</SHORT-NAME>
+                      <SYMBOL>b2</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>c3</SHORT-NAME>
+                      <SYMBOL>c3</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
                   <METHODS>
-                    <CLIENT-SERVER-OPERATION UUID="e7145852-159d-47b3-bf51-d8fdaa04ea63">
+                    <CLIENT-SERVER-OPERATION UUID="0">
                       <SHORT-NAME>exampleMethod</SHORT-NAME>
                     </CLIENT-SERVER-OPERATION>
                   </METHODS>
