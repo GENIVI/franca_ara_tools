@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
-<!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="FARACON Base Target Platform - Eclipse 4.7" sequenceNumber="1562682628">
+<!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
+<target name="FARACON Base Target Platform - Eclipse 4.7" sequenceNumber="1571670168">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.7.2.v20171130-0906"/>
-      <unit id="org.eclipse.pde.feature.group" version="3.13.2.v20171130-0510"/>
-      <unit id="org.eclipse.equinox.executable.feature.group" version="3.7.2.v20171108-1834"/>
-      <unit id="org.eclipse.equinox.ds" version="1.5.0.v20170307-1429"/>
-      <unit id="org.eclipse.emf.sdk.feature.group" version="2.13.0.v20170609-0928"/>
-      <repository location="https://download.eclipse.org/releases/oxygen/201712201001"/>
+      <unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.equinox.ds" version="0.0.0"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
+      <repository location="https://download.eclipse.org/releases/oxygen/201804111000"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.14.0.v20180523-0937"/>
-      <unit id="org.eclipse.xtend.sdk.feature.group" version="2.14.0.v20180523-0937"/>
-      <repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.14.0/"/>
+      <unit id="org.eclipse.xtext.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.xtend.sdk.feature.group" version="0.0.0"/>
+      <repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.18.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.franca.core.sdk.feature.group" version="0.13.1.201807231814"/>
