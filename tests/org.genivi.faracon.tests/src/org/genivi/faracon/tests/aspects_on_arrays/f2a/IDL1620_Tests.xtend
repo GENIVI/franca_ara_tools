@@ -9,6 +9,7 @@ import org.junit.runner.RunWith
 
 /**
  * Tests the transformation of anonymous array types from Franca to AUTOSAR.
+ * «»
  */
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)

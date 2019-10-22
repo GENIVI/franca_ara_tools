@@ -14,6 +14,7 @@ import static extension org.genivi.faracon.tests.util.FaraconAssertHelper.*
 
 /**
  * Test cases for flattening Franca unions with inherited base unions.
+ * «»
  */
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)

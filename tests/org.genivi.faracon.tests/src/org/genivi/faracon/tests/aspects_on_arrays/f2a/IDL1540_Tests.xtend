@@ -10,6 +10,7 @@ import org.junit.runner.RunWith
 /**
  * Tests the transformation of named array types from Franca to AUTOSAR.
  * Also includes testing for IDL1550.
+ * «»
  */
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)

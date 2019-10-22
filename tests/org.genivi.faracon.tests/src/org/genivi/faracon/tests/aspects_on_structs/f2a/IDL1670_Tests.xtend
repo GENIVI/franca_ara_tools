@@ -9,6 +9,7 @@ import org.junit.runner.RunWith
 
 /**
  * Test cases for polymorphic struct hierarchies
+ * «»
  */
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)

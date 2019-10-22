@@ -17,7 +17,7 @@ import static extension org.genivi.faracon.tests.util.FrancaAssertHelper.*
 
 /**
  * Test transformation of Autosar implementation data type with category 
- * UNION to Franca union type. 
+ * UNION to Franca union type. «» 
  */
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)

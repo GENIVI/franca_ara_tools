@@ -13,6 +13,7 @@ import static extension org.genivi.faracon.tests.util.FaraconAssertHelper.*
 
 /**
  * Test cases for testing the conversion of Franca unions to AUTOSAR unions.
+ * «»
  */
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)

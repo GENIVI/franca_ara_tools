@@ -13,6 +13,7 @@ import static extension org.genivi.faracon.tests.util.FaraconAssertHelper.*
 
 /**
  * Test cases for testing the conversion of franca structs to autosar
+ * «»
  */
 @RunWith(XtextRunner2_Franca)
 @InjectWith(FaraconTestsInjectorProvider)
