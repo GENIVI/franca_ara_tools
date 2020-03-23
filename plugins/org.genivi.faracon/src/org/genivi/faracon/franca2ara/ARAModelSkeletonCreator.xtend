@@ -28,8 +28,12 @@ class ARAModelSkeletonCreator extends Franca2ARABase {
 	}
 
 	def private create fac.createARPackage createPackageHierarchy(FModel fModel) {
-		val segments = fModel.name.split(Pattern.quote("."))
 		var ARPackage currentPackage = it
+		if(fModel.name.nullOrEmpty){
+			logger.logError("The name of the FIdl model is not set. The transformation to ARXML cannot be executed.")
+			return
+		}
+		val segments = fModel.name.split(Pattern.quote("."))
 		if (!segments.nullOrEmpty) {
 			currentPackage.shortName = segments.get(0)
 			var ARPackage currentParentPackage = currentPackage
